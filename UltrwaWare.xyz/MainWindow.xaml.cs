@@ -24,7 +24,7 @@ namespace UltrwaWare.xyz
     public partial class MainWindow : Window
     {
         MySqlConnection SQLcon;
-        string connectionString = "SERVER=remotemysql.com;PORT=3306;DATABASE=585LcKMwog;UID=585LcKMwog;PASSWORD=W38lGldT7N"; //UID = username
+        string connectionString = "SERVER=remotemysql.com;PORT=3306;DATABASE=xrVr9XdMhC;UID=xrVr9XdMhC;PASSWORD=859oajPzoO;"; //UID = username
         int Users = 1;
         string hwidnumber;
 
@@ -37,7 +37,7 @@ namespace UltrwaWare.xyz
                 SQLcon = new MySqlConnection();
                 SQLcon.ConnectionString = connectionString;
                 SQLcon.Open();
-                string query = "SELECT * FROM cheatusers where ID";
+                string query = "SELECT * FROM UltraWareUsers where ID";
                 MySqlCommand cmd = new MySqlCommand(query, SQLcon);
                 MySqlDataReader Datareader = cmd.ExecuteReader();
                 while (Datareader.Read())
@@ -78,7 +78,7 @@ namespace UltrwaWare.xyz
                     SQLcon = new MySqlConnection();
                     SQLcon.ConnectionString = connectionString;
                     SQLcon.Open();
-                    string query = $"SELECT * FROM cheatusers where Username='{Usernametxt.Text}' and Password='{Passwordtxt.Password}'"; //Create query to table in database provideed in connection string
+                    string query = $"SELECT * FROM UltraWareUsers where Username='{Usernametxt.Text}' and Password='{Passwordtxt.Password}'"; //Create query to table in database provideed in connection string
                     MySqlCommand cmd = new MySqlCommand(query, SQLcon);
                     MySqlDataReader DataReader = cmd.ExecuteReader();
                     int Username = 0;
@@ -94,7 +94,7 @@ namespace UltrwaWare.xyz
                         return;
                     }
                     DataReader.Close();
-                    string queryHWID = $"SELECT * FROM cheatusers where Username='{Usernametxt.Text}' and Password='{Passwordtxt.Password}' and HWID='{hwidnumber}'"; //Create query to table in database provided in connection string
+                    string queryHWID = $"SELECT * FROM UltraWareUsers where Username='{Usernametxt.Text}' and Password='{Passwordtxt.Password}' and HWID='{hwidnumber}'"; //Create query to table in database provided in connection string
                     MySqlCommand cmdHWID = new MySqlCommand(queryHWID, SQLcon);
                     MySqlDataReader DataReaderHWID = cmdHWID.ExecuteReader();
                     int HWID = 0;
@@ -109,7 +109,7 @@ namespace UltrwaWare.xyz
                         messagebox2.Show();
                         return;
                     }
-                    string queryTime = $"SELECT * FROM cheatusers WHERE Username='{Usernametxt.Text}'"; // AND `Subscription` AND `ID` AND `Type`
+                    string queryTime = $"SELECT * FROM UltraWareUsers WHERE Username='{Usernametxt.Text}'"; // AND `Subscription` AND `ID` AND `Type`
                     MySqlCommand cmdTime = new MySqlCommand(queryTime, SQLcon);
                     MySqlDataReader DataReaderTime = cmdTime.ExecuteReader();
                     DateTime ExpireDate = new DateTime();
@@ -136,7 +136,7 @@ namespace UltrwaWare.xyz
                     }
                     if (Username == 1)
                     {
-                        string queryLastLogin = $"UPDATE `cheatusers` SET `LastLogin` = '{date}' WHERE `cheatusers`. `ID` = '{Id}' AND `cheatusers`. `Username` = '{Usernametxt.Text}'"; //For updating the lasttime when user loged in
+                        string queryLastLogin = $"UPDATE `UltraWareUsers` SET `LastLogin` = '{date}' WHERE `UltraWareUsers`. `ID` = '{Id}' AND `UltraWareUsers`. `Username` = '{Usernametxt.Text}'"; //For updating the lasttime when user loged in
                         MySqlCommand cmdLastLogin = new MySqlCommand(queryLastLogin, SQLcon);
                         MySqlDataReader DataReaderlastLogin = cmdLastLogin.ExecuteReader();
                         while (DataReaderlastLogin.Read())
@@ -168,7 +168,7 @@ namespace UltrwaWare.xyz
                     SQLcon = new MySqlConnection();
                     SQLcon.ConnectionString = connectionString;
                     SQLcon.Open();
-                    string queryUsername = $"SELECT * FROM cheatusers where Username='{Usernametxt.Text}'"; //Create query to table in database provideed in connection string
+                    string queryUsername = $"SELECT * FROM UltraWareUsers where Username='{Usernametxt.Text}'"; //Create query to table in database provideed in connection string
                     MySqlCommand cmdCheck = new MySqlCommand(queryUsername, SQLcon);
                     MySqlDataReader DataReaderCheck = cmdCheck.ExecuteReader();
                     int Username = 0;
@@ -184,7 +184,7 @@ namespace UltrwaWare.xyz
                         return;
                     }
                     DataReaderCheck.Close();
-                    string queryHWID = $"SELECT * FROM cheatusers where HWID='{hwidnumber}'"; //Create query to table in database provided in connection string
+                    string queryHWID = $"SELECT * FROM UltraWareUsers where HWID='{hwidnumber}'"; //Create query to table in database provided in connection string
                     MySqlCommand cmdHWID = new MySqlCommand(queryHWID, SQLcon);
                     MySqlDataReader DataReaderHWID = cmdHWID.ExecuteReader();
                     while (DataReaderHWID.Read())
@@ -200,7 +200,7 @@ namespace UltrwaWare.xyz
                     }
 
                     //When declaring columns u want to insert it has to be `(tylda) not '
-                    string queryinsert = $"INSERT INTO cheatusers (`ID`, `Username`, `Password`, `HWID`, `FirstLogin`) VALUES ('{Users}', '{Usernametxt.Text}', '{Passwordtxt.Password}', '{hwidnumber}', '{date}')"; 
+                    string queryinsert = $"INSERT INTO UltraWareUsers (`ID`, `Username`, `Password`, `HWID`, `FirstLogin`) VALUES ('{Users}', '{Usernametxt.Text}', '{Passwordtxt.Password}', '{hwidnumber}', '{date}')"; 
                     MySqlCommand cmdinsert = new MySqlCommand(queryinsert, SQLcon);
                     MySqlDataReader DataReader = cmdinsert.ExecuteReader();
                     while (DataReader.Read())
